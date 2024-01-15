@@ -24,7 +24,10 @@ hide_other_section_menus: true
 # If you want a collection of pages for course material:
 collections:
   # In Finnish you might want to write e.g. "materiaali:" instead.
-  material:
+  material_1:
+    output: true
+    permalink: /:title/
+  material_2:
     output: true
     permalink: /:title/
 
