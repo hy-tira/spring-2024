@@ -7,7 +7,7 @@ permalink: /
 
 The course consists of two five credit course units, Part I and Part II. You can complete both parts as an online course on this page during Spring 2024.
 
-The course is completed by solving automatically checked exercies. The course format is the same for degree students of the University of Helsinki and for Open University students.
+The course is completed by solving automatically checked exercises. The course format is the same for degree students of the University of Helsinki and for Open University students.
 
 ## Timetable and exercises
 
