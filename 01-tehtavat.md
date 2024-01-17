@@ -1,15 +1,15 @@
 ---
-title: Tehtävät
-permalink: /tehtavat
+title: Exercises
+permalink: /exercises
 hide: true
 ---
     
-# Tehtävät
+# Exercises
 
-Sinun tulee ratkoa viikoittain ainakin 5/8 tehtävää deadlineen mennessä, jotta saat suorituksen kurssista.
+To pass the course, solve at least 5 of each week's 8 exercise problems by the deadline.
 
-Tarvitset kurssin tehtävien palauttamiseen mooc.fi-tunnuksen. Jos sinulla ei ole ennestään tunnusta, voit [luoda uuden tunnuksen](https://www.mooc.fi/en/sign-up).
+To return your solutions, you need a mooc.fi account. If you do not yet have one, you can [create a new account](https://www.mooc.fi/en/sign-up).
 
-Kurssin tehtävät palautetaan CSES-järjestelmään, joka arvostelee ne automaattisesti.
+The solutions are returned to the CSES system and are checked automatically.
 
-* [Siirry tehtäviin](https://cses.fi/tira23s/list/)
+* [Go to exercises](https://cses.fi/dsa24k/list/)
