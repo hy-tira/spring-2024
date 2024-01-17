@@ -1,7 +1,6 @@
 ---
 title: Exercises
 permalink: /exercises
-hide: true
 ---
     
 # Exercises
