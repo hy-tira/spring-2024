@@ -1,30 +1,30 @@
 ---
-title: Alkion lisääminen listaan
-permalink: /lista-lisaaminen
+title: Adding elements to list
+permalink: /list-addition
 hide: true
 ---
     
-# Alkion lisääminen listaan
+# Adding elements to list
 
-Kun listan loppuun lisätään alkio, aikaa kuluu $$O(1)$$ tai $$O(n)$$ riippuen siitä, voidaanko uusi alkio sijoittaa suoraan varatun muistialueen loppuun vai tuleeko ensin varata uusi muistialue ja siirtää listan vanha sisältö sinne.
+When an element is added to the end of a list, the time needed is $$O(1)$$ or $$O(n)$$ depending on whether the memory area reserved for the list has room for the new element or not. If there is no room, a new, bigger memory area is reserved and all the elements are copied there from the old memory area.
 
-Vaikka alkion lisääminen vie välillä aikaa $$O(n)$$, voidaan osoittaa, että aikaa kuluu _keskimäärin_ vain $$O(1)$$, jos uuden muistialueen varaaminen toteutetaan sopivalla tavalla. Yksi mahdollinen tapa on _kaksinkertaistaa_ muistialueen koko aina, kun muistia varataan lisää.
+Although the _worst case_ time complexity is $$O(n)$$, it can be shown that the _average case_ time complexity is $$O(1)$$ with an appropriate method of memory reservation. One such method is to _double_ the reserved memory area whenever more memory is needed.
 
-Tarkastellaan tilannetta, jossa listalle on lisätty yhteensä $$n$$ alkiota ja listalle on juuri varattu uusi muistialue. Tässä tilanteessa $$n$$ alkiota on siirretty kerran, $$n/2$$ alkiota on siirretty kahdesti, $$n/4$$ alkiota on siirretty kolmesti jne., joten yhteensä siirrettyjen alkioiden määrä on
+Consider a situation, where the list contains $$n$$ elements and it was just moved to a new memory area. That last relocation moved $$n$$ elements, the one before that moved $$n/2$$ elements, the one before that moved $$n/4$$ elements, etc.. Thus the total number of element moves is:
 
-$$n+n/2+n/4+n/8+\dots = O(n).$$
+$$n+n/2+n/4+n/8+\dots < 2n = O(n).$$
 
-Koska listalla on yhteensä $$n$$ alkiota ja kaikkien siirtojen määrä on $$O(n)$$, kunkin alkion lisääminen on vienyt _keskimäärin_ $$O(1)$$ aikaa.
+Because $$n$$ elements have been added to the list and the total number of moves is $$O(n)$$, the number of moves per element addition is $$O(1)$$ _on average_. 
 
-Yleisemmin jos varatun alueen koko $$c$$-kertaistetaan, siirrettyjen alkioiden määrä on
+More generally, if the size of the memory area is multiplied by $$c$$ with each expansion, the number of moves is
 
 $$n+n/c+n/c^2+n/c^3+\dots = O(n),$$
 
-kun $$c$$ on mikä tahansa vakio, joka on suurempi kuin $$1$$. Vakion $$c$$ avulla voidaan säädellä listan tehokkuuden ja muistinkäytön suhdetta. Mitä suurempi $$c$$ on, sitä harvemmin listan sisältö täytyy kopioida uuteen paikkaan muistissa mutta sitä enemmän ylimääräistä muistia listalle varataan.
+where $$c$$ is any constant bigger than $$1$$. The constant $$c$$ controls a tradeoff between efficiency and memory use. A bigger $$c$$ means that there is less copying and more memory reserved but unused. 
 
-## Pythonin toteutus
+## Python implementation
 
-Seuraavan koodin avulla voidaan tutkia Pythonin listan muistinkäyttöä:
+We can study the memory use of a Python list with the following code:
 
 ```python
 import sys
@@ -44,9 +44,9 @@ for i in range(n):
     numbers.append(1)
 ```
 
-Koodissa käyttää funktiota `sys.getsizeof`, joka kertoo sille annetun olion muistinkäytön tavuina. Koodi aloittaa tyhjästä listasta ja lisää listalle alkion kerrallaan. Aina kun muistinkäyttö muuttuu edellisestä arvosta, koodi tulostaa listan koon ja sen muistinkäytön.
+The code uses the function `sys.getsizeof` that returns the memory used by the given object in bytes. The code creates an empty list and then adds elements to the list one at a time. Whenever the memory usage changes, the code prints out the length and memmory use of the list.
 
-Koodin tulostus testikoneella (CPython 3.10.6) on seuraava:
+In the test computer (CPython 3.10.6), the code prints:
 
 ```console
 0 56
@@ -63,6 +63,6 @@ Koodin tulostus testikoneella (CPython 3.10.6) on seuraava:
 93 920
 ```
 
-Tästä näkee, että tyhjä lista vie muistia 56 tavua ja kullekin alkiolle varataan muistia 8 tavua. Listan muistinkäyttö kasvaa tilanteissa, joissa alkioiden määräksi tulee 1, 5, 9, 17, 25, jne. Esimerkiksi kun alkioiden määräksi tulee 17, uusi muistinkäyttö on 248 tavua ja muistia varataan (248 – 56) / 8 = 24 alkiolle. Niinpä muistia tarvitaan lisää seuraavan kerran, kun alkioiden määräksi tulee 25.
+This shows that an empty list requires 56 bytes of memory, and that each additional element needs 8 bytes. The memory usage grows when the number of elements grows to 1, 5, 9, 17, 25, etc.. For example, when the element count reaches 17, the new memory usage is 248 bytes and there is room for (248 - 56) / 8 = 24 elements. Thus the next expansion happens when the element count reaches 25.
 
-Tutkimalla [CPythonin listan toteutusta](https://github.com/python/cpython/blob/0a9b339363a59be1249189c767ed6f46fd71e1c7/Objects/listobject.c#L72) selviää, että uusi muistialueen alkioiden määrä lasketaan kaavalla $$n + \lfloor n/8 \rfloor + 6$$ pyöristettynä alaspäin lähimpään 4:n moninkertaan. Esimerkiksi kun $$n=17$$, kaavasta tulee $$17+\lfloor 17/8 \rfloor + 6 = 25$$ ja tätä lähin 4:n moninkerta on $$24$$. Niinpä muistialueen koko suunnilleen $$9/8$$-kertaistuu, kun muistia varataan lisää.
+Studying the [list implementation in CPython](https://github.com/python/cpython/blob/0a9b339363a59be1249189c767ed6f46fd71e1c7/Objects/listobject.c#L72) shows that the number of elements that fit in the new memory area has room for $$n + \lfloor n/8 \rfloor + 6$$ rounded down to the nearest multiple of 4, where $n$ is the element count that triggered the expansion. For example when $$n=17$$, the formula evaluates to $$17+\lfloor 17/8 \rfloor + 6 = 25$$ and the nearest multiple of 4 is $$24$$. This means that the memory size changes approximately by the factor $9/8$ in each expansion. 
