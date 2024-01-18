@@ -44,7 +44,7 @@ for i in range(n):
     numbers.append(1)
 ```
 
-The code uses the function `sys.getsizeof` that returns the memory used by the given object in bytes. The code creates an empty list and then adds elements to the list one at a time. Whenever the memory usage changes, the code prints out the length and memmory use of the list.
+The code uses the function `sys.getsizeof` that returns the memory used by the given object in bytes. The code creates an empty list and then adds elements to the list one at a time. Whenever the memory usage changes, the code prints out the length and memory use of the list.
 
 In the test computer (CPython 3.10.6), the code prints:
 
@@ -65,4 +65,4 @@ In the test computer (CPython 3.10.6), the code prints:
 
 This shows that an empty list requires 56 bytes of memory, and that each additional element needs 8 bytes. The memory usage grows when the number of elements grows to 1, 5, 9, 17, 25, etc.. For example, when the element count reaches 17, the new memory usage is 248 bytes and there is room for (248 - 56) / 8 = 24 elements. Thus the next expansion happens when the element count reaches 25.
 
-Studying the [list implementation in CPython](https://github.com/python/cpython/blob/0a9b339363a59be1249189c767ed6f46fd71e1c7/Objects/listobject.c#L72) shows that the number of elements that fit in the new memory area has room for $$n + \lfloor n/8 \rfloor + 6$$ rounded down to the nearest multiple of 4, where $n$ is the element count that triggered the expansion. For example when $$n=17$$, the formula evaluates to $$17+\lfloor 17/8 \rfloor + 6 = 25$$ and the nearest multiple of 4 is $$24$$. This means that the memory size changes approximately by the factor $9/8$ in each expansion. 
+Studying the [list implementation in CPython](https://github.com/python/cpython/blob/0a9b339363a59be1249189c767ed6f46fd71e1c7/Objects/listobject.c#L72) shows that the number of elements that fit in the new memory area is $$n + \lfloor n/8 \rfloor + 6$$ rounded down to the nearest multiple of 4, where $n$ is the element count that triggered the expansion. For example when $$n=17$$, the formula evaluates to $$17+\lfloor 17/8 \rfloor + 6 = 25$$ and the nearest multiple of 4 is $$24$$. This means that the memory size changes approximately by the factor $9/8$ in each expansion. 
