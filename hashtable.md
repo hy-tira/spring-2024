@@ -6,19 +6,19 @@ hide: true
     
 # Hash table
 
-A _hash table_ is a data structure for efficiently maintaining a set of elements. For example, the Python data structures `set` and `dict` are implemted using a hash table.
+A _hash table_ is a data structure for efficiently maintaining a set of elements. For example, the Python data structures `set` and `dict` are implemented using a hash table.
 
 A hash table consists of $$N$$ locations indexed $$0,1,\dots,N-1$$. Each element has a specific location in the hash table based on its hash value.
 
-A _hash function_ determines the location of an element in the hash table. The function takes an element $$x$$ as a parameter and returns an integer $$h(x)$$ as the _hash value_ of $$x$$.  The location of $$x$$ in the hash table is $$h(x) \bmod N$$, i.e., the remainder from dividing $$h(x)$$ by $$N$$.
+A _hash function_ determines the location of an element in the hash table. The function takes an element $$x$$ as a parameter and returns an integer $$h(x)$$ as the _hash value_ of the element $$x$$. The location of $$x$$ in the hash table is $$h(x) \bmod N$$, i.e., the remainder from dividing $$h(x)$$ by $$N$$.
 
 When the element is added to the hash table, it will be inserted at the location $$h(x) \bmod N$$. Similarly, when checking if the hash table contains the element $$x$$, it will be searched at the location $$h(x) \bmod N$$.
 
 ## Example
 
-Consider an example, where $$N=10$$ and $$h(x)=7x$$. We will store the elements of the set $$\{2,4,5,9,18,30\}$$ into the hash table. We obtain the following hash values for the elements:
+Consider an example, where $$N=10$$ and $$h(x)=7x$$. We will store the elements of the set $$\{2,4,5,9,18,30\}$$ into the hash table. We obtain the following locations for the elements:
 
-Element | Hash value
+Element | Location
 -- | --
 $$2$$ | $$7 \cdot 2 \bmod 10 = 4$$
 $$4$$ | $$7 \cdot 4 \bmod 10 = 8$$
@@ -27,7 +27,7 @@ $$9$$ | $$7 \cdot 9 \bmod 10 = 3$$
 $$18$$ | $$7 \cdot 18 \bmod 10 = 6$$
 $$30$$ | $$7 \cdot 30 \bmod 10 = 0$$
 
-Thus the elements are located in the hash table as follows:
+Thus the hash table as follows after the additions:
 
 Location | $$0$$ | $$1$$ | $$2$$ | $$3$$ | $$4$$ | $$5$$ | $$6$$ | $$7$$ | $$8$$ | $$9$$
 Elements | $$30$$ | -- | -- | $$9$$ | $$2$$ | $$5$$ | $$18$$ | -- | $$4$$ | --
@@ -44,7 +44,7 @@ There are two commonly used techniques for handling collisions:
 
 * _Chaining_: Each hash table location contains a list that stores all the elements assigned to that location.
 
-* _Open addressing_: Each location contains at most one element. The location of an element $$x$$ is determined by computing the function $$p(x,i)$$ for $$i=0,1,2,\dots$$ until an unoccupied location is found.
+* _Open addressing_: Each location contains at most one element. The location of an element $$x$$ is determined by using a hash function $$p(x,i)$$ with a second parameter $$i$$ so that we can try different choices $$i=0,1,2,\dots$$ until an unoccupied location is found.
 
 ## Efficiency
 
