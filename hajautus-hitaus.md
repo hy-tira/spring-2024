@@ -85,7 +85,7 @@ while True:
 
 Notice that this is not the actual code implementing the dictionary (Python is implemented in the C language), but this code shows the idea.
 
-The variable `index` is the location in the hash table and its initial value is computed with the formula `hash(key) % N`. If the location `index` is occupied, the next location to try is computed as with the formula `(5 * index + 1 + perturb) % N`. This continues until an unoccupied location is found.
+The variable `index` is the location in the hash table and its initial value is computed with the formula `hash(key) % N`. If the location `index` is occupied, the next location to try is computed with the formula `(5 * index + 1 + perturb) % N`. This continues until an unoccupied location is found.
 
 The purpose of the variable `perturb` is to make collisions less likely. It affects the location formula for the first few tries. The initial value of `perturb` is the hash value of the key, and in each round its new value is computed as `perturb >> 5`. This bit shift operation corresponds to dividing by $$32$$ and rounding down.
 
@@ -119,7 +119,7 @@ for i in range(chain_len):
     keys.append(key)
     key = (5 * key + 1) % N
 
-key = N
+key = chain_len
 while len(keys) < n:
     index, count = find(table, key)
     if count > threshold:
