@@ -25,7 +25,7 @@ The deadline for Part I is Sunday, March 10 at 23:59. The course materials and e
 
 {: .cell-w-3 }
 Week | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
-Publication date | 18.1. | 19.1. | 25.1. | 26.1. | 1.2. | 2.1. | 8.2. | 9.2. |
+Publication date | 18.1. | 19.1. | 25.1. | 26.1. | 1.2. | 2.2. | 8.2. | 9.2. |
 
 The deadline for Part II is Sunday, May 5 at 23:59. The course materials and exercise problems will be published according to the following schedule:
 
