@@ -1,6 +1,6 @@
 ---
 title: Insertion sort
-permalink: /insertionsort
+permalink: /insertion-sort
 hide: true
 ---
 
