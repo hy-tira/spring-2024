@@ -8,7 +8,7 @@ hide: true
 
 _Insertion sort_ is a simple sorting algorithm with time complexity $$O(n^2)$$.
 
-The algorithm goes through the list from left to right. At each position, the element at that position is moved to the left so that the beginning of the list is in the correct order up to that position. When the algorithm has processed all positions, the whole list is in order.
+The algorithm goes through the list from left to right. At each position, the element at that position is moved to the left so that the beginning of the list up to that position is in the correct order. When the algorithm has processed all positions, the whole list is in order.
 
 ## Example
 
@@ -47,7 +47,7 @@ Notice that the above function `insertion_sort` is intended for illustrating ins
 
 The time complexity of insertion sort is $$O(n^2)$$ because it has two nested loops. The worst case for the algorithm is if the initial list is in reverse order. Then every element has to be moved all the way to the beginning of the list step by step.
 
-A more precise measure of the efficiency of insertion sort is the number of _inversions_. A pair of numbers $$(a,b)$$ is an inversion if $$a<b$$ and the list elements at the positions $$a$$ and $$b$$ are in the wrong order. For example, in the list $$[5,2,4,2,6,1]$$ the inversions are $$(0,1)$$, $$(0,2)$$, $$(0,3)$$, $$(0,5)$$, $$(2,3)$$, $$(2,5)$$ and $$(4,5)$$.
+A more precise measure of the efficiency of insertion sort is the number of _inversions_. A pair of numbers $$(a,b)$$ is an inversion if $$a<b$$ and the list elements at the positions $$a$$ and $$b$$ are in the wrong order. For example, in the list $$[5,2,4,2,6,1]$$ the inversions are $$(0,1)$$, $$(0,2)$$, $$(0,3)$$, $$(0,5)$$, $$(1,5)$$, $$(2,3)$$, $$(2,5)$$, $$(3,5)$$ and $$(4,5)$$.
 
 Every swap made by the algorithm removes one inversion from the list, and the final sorted list has no inversions. Thus the number of swaps performed by the algorithm is equal to the number of inversions on the original list. When the list is in reverse order, the number of inversions is $$n(n-1)/2$$ which is of order $$O(n^2)$$.
 
