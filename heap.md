@@ -28,7 +28,7 @@ A new element is initially inserted at the end of the list which corresponds to 
 
 The following picture shows how the element $$2$$ is added to the example heap. It is first inserted at the bottom and then lifted up two levels.
 
-![](keko_1.png)
+![](heap-add.png)
 
 The time complexity of an addition is $$O(\log n)$$, because each step moves one level up and the heap has $$O(\log n)$$ levels.
 
@@ -38,7 +38,7 @@ When the element at the root of a heap is removed, the root is first filled by m
 
 The following picture shows how the element $$1$$ is removed from the heap. It is first replaced by the element $$5$$, which is then moved down.
 
-![](keko_2.png)
+![](heap-remove.png)
 
 Removing an element takes $$O(\log n)$$ time, because each step moves one level down and the heap has $$O(\log n)$$ levels.
 
