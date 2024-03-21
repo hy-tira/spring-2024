@@ -60,7 +60,7 @@ heapq.heappop(heap)
 print(heap) # [3, 4, 5, 5, 5, 8, 9, 7, 8]
 ```
 
-The module `heapq` also provides a function 'heapify` that turns an existing list into a heap:
+The module `heapq` also provides a function `heapify` that turns an existing list into a heap:
 
 ```python
 import heapq
