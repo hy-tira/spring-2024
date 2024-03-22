@@ -6,7 +6,7 @@ hide: true
     
 # AVL tree
 
-_AVL tree_ is a balanced binary search tree with a height $$O(\log n)$$ when there are $n$ nodes. This ensures that operations on a set implemented using an AVL tree have time complexity $$O(\log n)$$.
+_AVL tree_ is a balanced binary search tree with a height $$O(\log n)$$ when there are $$n$$ nodes. This ensures that operations on a set implemented using an AVL tree have time complexity $$O(\log n)$$.
 
 ## Balance condition
 
@@ -26,7 +26,7 @@ because the smallest tree of height $$h$$ is obtained by having the smallest tre
 
 With this we can find an estimate on the maximum height of a tree with $$n$$ nodes. The maximum height is the largest $$h$$ such that $$f(h) \le n$$, because any tree of height more than $$h$$ would need to have more than $$n$$ nodes.
 
-When $h \ge 2$$, we can estimate the value $$f(h)$$ as follows:
+When $$h \ge 2$$, we can estimate the value $$f(h)$$ as follows:
 
 $$f(h)=f(h-2)+f(h-1)+1 > 2 f(h-2)$$
 
@@ -46,13 +46,13 @@ Here $$x$$ and $$y$$ are nodes of the tree and $$A$$, $$B$$ and $$C$$ are subtre
 
 ## Adding an element
 
-When an element is added to the tree, the subtree heights may change for the nodes on the route from the new node to the root. After the addition, this route is traversed and the heights are updated if necessary. If the update of a height causes a violation of the balance condition, the situation is corrected with rotations.
+When an element is added to the tree, the subtree heights may change for the nodes on the route from the new node to the root. After the addition, these nodes are visited starting from the bottom and the heights are updated if necessary. If the update of a height causes a violation of the balance condition, the situation is corrected with rotations.
 
 Let $$x$$ denote the lowest node that violates the balance condition. Let $$y$$ denote the child of $$x$$ on the route from the new node and let $$z$$ denote the child of $$y$$ on the same route. We will consider two possible cases:
 
 ### Case 1
 
-The nodes $$y$$ and $$z$$ children of the same side. In this case, we do a rotation that raises $$y$$ up and pushes $$x$$ down.
+The nodes $$y$$ and $$z$$ are children of the same side. In this case, we do a rotation that raises $$y$$ up and pushes $$x$$ down.
 
 For example, in the following image, $$y$$ and $$z$$ are both right children. Then the rotation moves $$x$$ to the left child of $$y$$ while $$z$$ remains the right child of $$y$$.
 
